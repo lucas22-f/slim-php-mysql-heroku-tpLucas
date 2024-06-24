@@ -5,14 +5,14 @@ require_once 'models/Bartender.php';
 class BartenderController extends Bartender implements IApiUsable
 {
     public function __construct(){
-        
+
     }
     public function CargarUno($request, $response, $args) {
         $parametros = $request->getParsedBody();
         $nombre = $parametros['nombre'];
         $apellido = $parametros['apellido'];
-        $password = $parametros['password'];
-        Bartender::crearBartender($nombre,$apellido,$password);
+        $passwd = $parametros['passwd'];
+        Bartender::crearBartender($nombre,$apellido,$passwd);
         $payload = json_encode(array("mensaje" => "Bartender creado con exito"));
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');
@@ -25,7 +25,7 @@ class BartenderController extends Bartender implements IApiUsable
         return $response->withHeader('Content-Type', 'application/json');
     }
     public function TraerTodos($request, $response, $args) {
-        $lista = Bartender::obtenerListaBartenders();
+        $lista = Bartender::obtenerListaBartenders("bartender");
         $payload = json_encode(array("listaBartenders" => $lista));
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');

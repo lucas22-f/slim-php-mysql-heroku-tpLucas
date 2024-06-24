@@ -1,11 +1,11 @@
 <?php
 
 class Cocinero extends Usuario{
-    public function crearCocinero($nombre,$apellido,$password){
-        parent::crearUsuario("cocinero",$nombre,$apellido,$password);
+    public function crearCocinero($nombre,$apellido,$passwd){
+        parent::crearUsuario("cocinero",$nombre,$apellido,$passwd);
     }
-    public static function obtenerListaCocineros(){
-        return parent::obtenerListaUsuarios();
+    public static function obtenerListaCocineros($rol){
+        return parent::obtenerListaUsuarios($rol);
     }
     public static function obtenerCocinero($id){
         return parent::obtenerUsuario($id);

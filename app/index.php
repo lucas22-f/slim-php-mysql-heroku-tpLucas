@@ -59,13 +59,6 @@ $app->addBodyParsingMiddleware();
     $group->delete('/{id}', \PedidoController::class.':BorrarUno');
   });
 
-/*   $app->group('/mozo', function (RouteCollectorProxy $group) {
-    $group->get('[/]', \MozoController::class . ':TraerTodos');
-    $group->get('/{id}', \MozoController::class . ':TraerUno');
-    $group->post('[/]', \MozoController::class . ':CargarUno');
-    $group->put('/{id}', \MozoController::class . ':ModificarUno');
-    $group->delete('/{id}', \MozoController::class.':BorrarUno');
-  }); */
 
   $app->post('/register', \UsuarioController::class . ':CargarUno');
 

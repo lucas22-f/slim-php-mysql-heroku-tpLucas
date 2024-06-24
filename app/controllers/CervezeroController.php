@@ -9,14 +9,14 @@ class CervezeroController extends Cervezero implements IApiUsable {
         $parametros = $request->getParsedBody();
         $nombre = $parametros['nombre'];
         $apellido = $parametros['apellido'];
-        $password = $parametros['password'];
-        Cervezero::crearCervezero($nombre,$apellido,$password);
+        $passwd = $parametros['passwd'];
+        Cervezero::crearCervezero($nombre,$apellido,$passwd);
         $payload = json_encode(array("mensaje" => "Cervezero creado con exito"));
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');
     }
     public function TraerTodos($request, $response, $args) {
-        $lista = Cervezero::obtenerListaCervezeros();
+        $lista = Cervezero::obtenerListaCervezeros("cervezero");
         $payload = json_encode(array("listaCervezeros" => $lista));
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');

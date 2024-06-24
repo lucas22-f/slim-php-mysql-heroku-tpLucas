@@ -4,7 +4,7 @@ require_once './interfaces/IApiUsable.php';
 require_once './controllers/MozoController.php';
 require_once './controllers/CocineroController.php';
 require_once './controllers/BartenderController.php';
-require_once './controllers/CerveceroController.php'; 
+require_once './controllers/CervezeroController.php';
 
 class UsuarioController extends Usuario implements IApiUsable
 {

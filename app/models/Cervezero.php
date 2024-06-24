@@ -1,11 +1,11 @@
 <?php
 
 class Cervezero extends Usuario{
-    public function crearCervezero($nombre,$apellido,$password){
-        parent::crearUsuario("cervezero",$nombre,$apellido,$password);
+    public function crearCervezero($nombre,$apellido,$passwd){
+        parent::crearUsuario("cervezero",$nombre,$apellido,$passwd);
     }
-    public static function obtenerListaCervezeros(){
-        return parent::obtenerListaUsuarios();
+    public static function obtenerListaCervezeros($rol){
+        return parent::obtenerListaUsuarios($rol);
     }
     public static function obtenerCervezero($id){
         return parent::obtenerUsuario($id);

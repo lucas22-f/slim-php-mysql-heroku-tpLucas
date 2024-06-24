@@ -11,8 +11,8 @@ class MozoController extends Mozo implements IApiUsable{
     public function CargarUno($request, $response, $args) {
 		$nombre = $request->getParsedBody()['nombre'];
         $apellido = $request->getParsedBody()['apellido'];
-		$password = $request->getParsedBody()['password'];
-		Mozo::crearMozo($nombre,$apellido,$password);
+		$passwd = $request->getParsedBody()['passwd'];
+		Mozo::crearMozo($nombre,$apellido,$passwd);
     
         $payload = json_encode(array("mensaje" => "Mozo creado con exito"));
         $response->getBody()->write($payload);
@@ -22,7 +22,7 @@ class MozoController extends Mozo implements IApiUsable{
 	}
     
 	public function TraerTodos($request, $response, $args) {
-		$lista = Mozo::obtenerListaMozos();
+		$lista = Mozo::obtenerListaMozos("mozo");
 		$payload = json_encode(array("listaMozos" => $lista));
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');

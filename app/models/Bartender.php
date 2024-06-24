@@ -1,11 +1,11 @@
 <?php
 
 class Bartender extends Usuario{
-    public function crearBartender($nombre,$apellido,$password){
-        parent::crearUsuario("bartender",$nombre,$apellido,$password);
+    public function crearBartender($nombre,$apellido,$passwd){
+        parent::crearUsuario("bartender",$nombre,$apellido,$passwd);
     }
-    public static function obtenerListaBartenders(){
-        return parent::obtenerListaUsuarios();
+    public static function obtenerListaBartenders($rol){
+        return parent::obtenerListaUsuarios($rol);
     }
     public static function obtenerBartender($id){
         return parent::obtenerUsuario($id);

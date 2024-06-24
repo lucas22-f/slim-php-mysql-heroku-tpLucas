@@ -2,11 +2,11 @@
 require_once 'Usuario.php';
 class Mozo extends Usuario{
 
-    public function crearMozo($nombre,$apellido,$password){
-        parent::crearUsuario("mozo",$nombre,$apellido,$password);
+    public function crearMozo($nombre,$apellido,$passwd){
+        parent::crearUsuario("mozo",$nombre,$apellido,$passwd);
     }
-    public static function obtenerListaMozos(){
-        return parent::obtenerListaUsuarios();
+    public static function obtenerListaMozos($rol){
+        return parent::obtenerListaUsuarios($rol);
     }
     public static function obtenerMozo($id){
         return parent::obtenerUsuario($id);

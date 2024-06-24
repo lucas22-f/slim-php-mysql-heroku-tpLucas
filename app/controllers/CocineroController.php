@@ -1,16 +1,16 @@
-<?
+<?php
 require_once 'models/Cocinero.php';
 class CocineroController extends Cocinero implements IApiUsable{
     public function __construct(){
-        
+
     }
     public function CargarUno($request, $response, $args) {
 		
         $parametros = $request->getParsedBody();
         $nombre = $parametros['nombre'];
         $apellido = $parametros['apellido'];
-        $password = $parametros['password'];
-        Cocinero::crearCocinero($nombre,$apellido,$password);
+        $passwd = $parametros['passwd'];
+        Cocinero::crearCocinero($nombre,$apellido,$passwd);
         $payload = json_encode(array("mensaje" => "Cocinero creado con exito"));
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');
@@ -34,7 +34,7 @@ class CocineroController extends Cocinero implements IApiUsable{
 	}
 	
 	public function TraerTodos($request, $response, $args) {
-		$lista = Cocinero::obtenerListaCocineros();
+		$lista = Cocinero::obtenerListaCocineros("cocinero");
         $payload = json_encode(array("listaCocineros" => $lista));
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');

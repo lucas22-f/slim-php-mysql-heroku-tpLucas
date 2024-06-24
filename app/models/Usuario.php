@@ -13,7 +13,7 @@ class Usuario
         $this->rol = $rol;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
-        $this->password = password_hash($nombre, PASSWORD_DEFAULT);
+        $this->passwd = password_hash($nombre, PASSWORD_DEFAULT);
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
         $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, apellido, rol, passwd) VALUES (:nombre, :apellido, :rol, :passwd)");
         $consulta->bindValue(':nombre', $nombre, PDO::PARAM_STR);
@@ -22,10 +22,11 @@ class Usuario
         $consulta->bindValue(':passwd', $this->passwd, PDO::PARAM_STR);
         $consulta->execute();
     }
-    public static function obtenerListaUsuarios()
+    public static function obtenerListaUsuarios($rol)
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM usuarios");
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE rol = :rol");
+        $consulta->bindValue(':rol', $rol, PDO::PARAM_STR);
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');
     }
