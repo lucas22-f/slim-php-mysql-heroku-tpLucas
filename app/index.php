@@ -18,6 +18,7 @@ require_once './db/AccesoDatos.php';
 require_once './controllers/MesaController.php';
 require_once './controllers/ProductoController.php';
 require_once './controllers/PedidoController.php';
+require_once './controllers/UsuarioController.php';
 // Load ENV
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
@@ -58,6 +59,22 @@ $app->addBodyParsingMiddleware();
     $group->delete('/{id}', \PedidoController::class.':BorrarUno');
   });
 
+/*   $app->group('/mozo', function (RouteCollectorProxy $group) {
+    $group->get('[/]', \MozoController::class . ':TraerTodos');
+    $group->get('/{id}', \MozoController::class . ':TraerUno');
+    $group->post('[/]', \MozoController::class . ':CargarUno');
+    $group->put('/{id}', \MozoController::class . ':ModificarUno');
+    $group->delete('/{id}', \MozoController::class.':BorrarUno');
+  }); */
+
+  $app->post('/register', \UsuarioController::class . ':CargarUno');
+
+  $app->group('/usuarios', function (RouteCollectorProxy $group) {
+    $group->get('[/]', \UsuarioController::class . ':TraerTodos');
+    $group->get('/{id}', \UsuarioController::class . ':TraerUno');
+    $group->put('/{id}', \UsuarioController::class . ':ModificarUno');
+    $group->delete('/{id}', \UsuarioController::class.':BorrarUno');
+  });
 
 $app->get('[/]', function (Request $request, Response $response) {    
     $payload = json_encode(array("mensaje" => "Slim Framework 4 PHP"));
